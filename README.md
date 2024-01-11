@@ -39,13 +39,13 @@ This script is the main component, which contains almost all of the magic going 
 3. Create a Flutter project at the specified location.
 4. Iterate over all entries contained in `strings.json` and create the respective files at the specified locations.
 5. Install dependencies for 
-    5.1. [flutter_bloc](https://pub.dev/packages/flutter_bloc)
-    5.2. [intl](https://pub.dev/packages/intl) (Note: The version is currently hardcoded to be 0.18.1, because of dependency issues)
-    5.3. [auto_route](https://pub.dev/packages/auto_route)
-    5.4. [flutter_localizations](https://pub.dev/packages/flutter_localization)
-    5.5. [auto_route_generator](https://pub.dev/packages/auto_route_generator)
-    5.6. [build_runner](https://pub.dev/packages/build_runner)
-    5.7. [json_serializable](https://pub.dev/packages/json_serializable)
+    * [flutter_bloc](https://pub.dev/packages/flutter_bloc)
+    * [intl](https://pub.dev/packages/intl) (Note: The version is currently hardcoded to be 0.18.1, because of dependency issues)
+    * [auto_route](https://pub.dev/packages/auto_route)
+    * [flutter_localizations](https://pub.dev/packages/flutter_localization)
+    * [auto_route_generator](https://pub.dev/packages/auto_route_generator)
+    * [build_runner](https://pub.dev/packages/build_runner)
+    * [json_serializable](https://pub.dev/packages/json_serializable)
 6. Run `fvm flutter pub get`
 7. Generate the localizations and the `auto_route` code.
 
