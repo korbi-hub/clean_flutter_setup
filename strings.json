@@ -1,0 +1,46 @@
+{
+    "files": [
+        {
+            "name": "app_router.dart",
+            "path": "./lib/app_router",
+            "create_folder": true,
+            "content": "import 'package:auto_route/auto_route.dart';\nimport '../screens/home_screen.dart';\npart 'app_router.gr.dart';\n\n@AutoRouterConfig()\nclass AppRouter extends _$AppRouter {\n  \n  static const home = '/home';\n\n  @override\n  List<AutoRoute> get routes => [\n        AutoRoute(path: home, page: HomeRoute.page, initial: true),\n      ];\n}"
+        },
+        {
+            "name": "l10n.yaml",
+            "path": "./",
+            "create_folder": false,
+            "content": "arb-dir: lib/l10n\ntemplate-arb-file: strings_en.arb\noutput-localization-file: app_localizations.dart"
+        },
+        {
+            "name": "strings_en.arb",
+            "path": "./lib/l10n",
+            "create_folder": true,
+            "content": "{}"
+        },
+        {
+            "name": "home_screen.dart",
+            "path": "./lib/screens",
+            "create_folder": true,
+            "content": "import 'package:flutter/material.dart';\nimport 'package:auto_route/auto_route.dart';\n\n@RoutePage()\nclass HomeScreen extends StatelessWidget {\n  const HomeScreen({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    return const Scaffold(\n      body: SafeArea(\n        child: Placeholder(),\n      ),\n    );\n  }\n}"
+        },
+        {
+            "name": "extensions.dart",
+            "path": "./lib/utils",
+            "create_folder": true,
+            "content": "import 'package:flutter/material.dart';\nimport 'package:flutter_gen/gen_l10n/app_localizations.dart';\n\nextension TranslationExtension on BuildContext {\n  AppLocalizations get translate {\n    return AppLocalizations.of(this)!;\n  }\n}"
+        },
+        {
+            "name": "main.dart",
+            "path": "./lib",
+            "create_folder": false,
+            "content": "import 'package:flutter/material.dart';\nimport 'package:flutter_gen/gen_l10n/app_localizations.dart';\nimport 'app_router/app_router.dart';\n\nvoid main() {\n  runApp(const MyApp());\n}\n\nclass MyApp extends StatelessWidget {\n  const MyApp({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    AppRouter router = AppRouter();\n\n    return MaterialApp.router(\n      localizationsDelegates: AppLocalizations.localizationsDelegates,\n      // workaround to set english as default language - found on https://github.com/flutter/flutter/issues/100857#issuecomment-1332298431\n      supportedLocales: List.of(AppLocalizations.supportedLocales)\n        ..sort(\n          (a, b) => const Locale('en').languageCode.compareTo(a.languageCode),\n        ),\n      routerConfig: router.config(),\n    );\n  }\n}"
+        },
+        {
+            "name": "Makefile",
+            "path": "./",
+            "create_folder": false,
+            "content": "generate-code:\n\tfvm flutter gen-l10n\n\tfvm flutter packages pub run build_runner build --delete-conflicting-outputs\n\nclean:\n\tcd lib && fvm flutter clean\n\trm -f pubspec.lock\n\tcd ios && pod deintegrate\n\tcd lib && fvm flutter pub get\n\tmake generate-code\n"
+        }
+    ]
+}
