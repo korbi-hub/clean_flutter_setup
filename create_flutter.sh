@@ -1,3 +1,3 @@
 #/!bin/bash
 
-python3 create_flutter.py
+python3 "$(dirname "$0")/create_flutter.py"
