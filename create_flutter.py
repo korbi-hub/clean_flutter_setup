@@ -59,10 +59,7 @@ async def main():
     makefile_path = os.path.join(script_path, 'makefile')
 
     project_name = input('Enter the name for the Flutter project: ')
-
-    os.makedirs((project_name), exist_ok=True)
-    os.chdir(project_name)
-
+ 
     # create project and setup fvm
     await install_fvm()
     await create_flutter_project(project_name)
@@ -73,7 +70,7 @@ async def main():
         files = json.load(json_file)
 
     for entry in files.get('files', []):
-        print('###########################################\n\n Added' + entry.get('name', '') + '\n\n###########################################')
+        print('\n###########################################\n Added ' + entry.get('name', '') + '\n###########################################\n')
         await generate_file(entry.get('content', ''), entry.get('path', ''), entry.get('name', ''), entry.get('create_folder', False))
 
     # remove comments from .yaml files
@@ -85,7 +82,8 @@ async def main():
     print('###########################################\n\nYour new Flutter project has been added to: ' + project_name + '\n\n###########################################')
 
     if is_vscode_installed():
-        subprocess.run(['code', project_name])
+        print(os.getcwd())
+        subprocess.run(['code', '../' + project_name])
 
 if __name__ == '__main__':
     asyncio.run(main())
