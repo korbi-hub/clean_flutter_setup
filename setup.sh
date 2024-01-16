@@ -2,7 +2,7 @@
 
 current_directory=$(pwd)
 
-chmod +x "$current_directory/.create_flutter_project.sh"
+chmod +x "$current_directory/create_flutter.sh"
 
 # Add the script's directory to the PATH
 export PATH="$current_directory:$PATH"
